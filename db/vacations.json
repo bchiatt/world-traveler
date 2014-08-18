@@ -1,0 +1,30 @@
+{
+  "_id":{"$oid":"000000000000000000000001"},
+  "name":"Paris, France",
+  "start":{"$date":477295200010},
+  "end":{"$date":477295200020},
+  "lat":39.45,
+  "long":17.45,
+  "photos":['google.com', 'wikipedia.com', 'yahoo.com']
+}
+
+{
+  "_id":{"$oid":"000000000000000000000002"},
+  "name":"London, England",
+  "start":{"$date":477295201010},
+  "end":{"$date":477295202020},
+  "lat":69.45,
+  "long":11.45,
+  "photos":['hotmail.com', 'cnn.com', 'example.com']
+}
+
+{
+  "_id":{"$oid":"000000000000000000000003"},
+  "name":"McGrasville, IN",
+  "start":{"$date":477295203010},
+  "end":{"$date":477295205020},
+  "lat":89.45,
+  "long":57.45,
+  "photos":['indiana.com', 'corn.com']
+}
+
