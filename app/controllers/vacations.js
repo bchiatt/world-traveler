@@ -5,8 +5,13 @@ var Vacation = require('../models/vacation'),
 
 exports.index = function(req, res){
   Vacation.all(function(err, vacations){
-    console.log(vacations);
     res.render('vacations/index', {vacations:vacations, moment:moment});
+  });
+};
+
+exports.show = function(req, res){
+  Vacation.findById(req.params.id, function(err, vacation){
+    res.render('vacations/show', {vacation:vacation, moment:moment});
   });
 };
 

@@ -54,5 +54,13 @@ describe('Vacation', function(){
       });
     });
   });
-});
 
+  describe('.findById', function(){
+    it('should get one vacation by id', function(done){
+      Vacation.findById('000000000000000000000001', function(err, vacation){
+        expect(vacation.name).to.equal('Paris, France');
+        done();
+      });
+    });
+  });
+});

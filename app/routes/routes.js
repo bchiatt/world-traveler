@@ -19,6 +19,7 @@ module.exports = function(app, express){
   app.get('/faq', home.faq);
   app.get('/contact', home.contact);
   app.get('/vacations/new', vacations.init);
+  app.get('/vacations/:id', vacations.show);
   app.post('/vacations', vacations.create);
   app.get('/vacations', vacations.index);
 

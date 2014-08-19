@@ -1,0 +1,39 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-5
+      #map-small
+    .col-xs-7
+      .row
+        .col-xs-7
+          h1= vacation.name
+      .row
+        .col-xs-7
+          table.table
+            thead
+              tr
+                th Name
+                th Start
+                th End
+                th Latitude
+                th Longitude
+            tbody
+              tr#vacation(data-name=vacation.name, data-lat=vacation.lat, data-lng=vacation.lng)
+                td= vacation.name
+                td= moment(vacation.start).format('MMM D, YYYY')
+                td= moment(vacation.end).format('MMM D, YYYY')
+                td= vacation.lat.toFixed(4)
+                td= vacation.lng.toFixed(4)
+      .row
+        .col-xs-7
+          form.form#form-photo(method='post', action='#', role='form')
+            input#lat(type='hidden', name='lat')
+            input#lng(type='hidden', name='lng')
+            .form-group
+              label(for='image') Image URL
+              input.form-control#image(type='text', placeholder='http://example.com/corn-field.jpg', name='image', autofocus='true')
+            button.btn.btn-default(type='submit') Add Image
+
+block scripts
+  script(src='/js/user/show-vacation.js')
+
