@@ -5,10 +5,10 @@ block content
       #map-small
     .col-xs-7
       .row
-        .col-xs-7
+        .col-xs-12
           h1= vacation.name
       .row
-        .col-xs-7
+        .col-xs-12
           table.table
             thead
               tr
@@ -17,6 +17,7 @@ block content
                 th End
                 th Latitude
                 th Longitude
+                th Photos
             tbody
               tr#vacation(data-name=vacation.name, data-lat=vacation.lat, data-lng=vacation.lng)
                 td= vacation.name
@@ -24,15 +25,38 @@ block content
                 td= moment(vacation.end).format('MMM D, YYYY')
                 td= vacation.lat.toFixed(4)
                 td= vacation.lng.toFixed(4)
+                td= vacation.photos.length
       .row
-        .col-xs-7
-          form.form#form-photo(method='post', action='#', role='form')
-            input#lat(type='hidden', name='lat')
-            input#lng(type='hidden', name='lng')
-            .form-group
-              label(for='image') Image URL
-              input.form-control#image(type='text', placeholder='http://example.com/corn-field.jpg', name='image', autofocus='true')
-            button.btn.btn-default(type='submit') Add Image
+        .col-xs-12
+          #carousel-example-generic(class='carousel slide', data-ride='carousel')
+            ol.carousel-indicators
+              - for (var i = 0; i < vacation.photos.length; i ++){
+                li(data-target='#carousel-example-generic', data-slide-to=i)
+              - }
+            .carousel-inner
+              each photo, index in vacation.photos
+                div(class=index === 0 ? 'item active' : 'item')
+                  .photo-vacation(style='background-image: url(#{photo})')
+            a(class='left carousel-control', href='#carousel-example-generic', role='button', data-slide='prev')
+              span(class='glyphicon glyphicon-chevron-left')
+            a(class='right carousel-control', href='#carousel-example-generic', role='button', data-slide='next')
+              span(class='glyphicon glyphicon-chevron-right')
+  .row
+    .col-xs-5
+      form.form#form-download(method='post', action='/vacations/' + vacation._id + '/photos/download')
+        input#lat(type='hidden', name='lat')
+        input#lng(type='hidden', name='lng')
+        .form-group
+          label(for='url') Photo URL
+          input.form-control#url(type='text', placeholder='http://example.com/corn-field.jpg', name='url', autofocus='true')
+        button.btn.btn-default(type='submit') Add Photo
+    .col-xs-6
+      form.form#form-upload(method='post', action='/vacations/' + vacation._id + '/photos/upload', enctype='multipart/form-data')
+        .form-group
+          label(for='photos') Upload Photos
+          input.form-control#photos(type='file', name='photos', multiple=true)
+        button.btn.btn-default(type='submit') Add Photo(s)
+
 
 block scripts
   script(src='/js/user/show-vacation.js')

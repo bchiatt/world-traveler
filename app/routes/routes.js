@@ -22,6 +22,8 @@ module.exports = function(app, express){
   app.get('/vacations/:id', vacations.show);
   app.post('/vacations', vacations.create);
   app.get('/vacations', vacations.index);
+  app.post('/vacations/:id/photos/download', vacations.downloadPhoto);
+  app.post('/vacations/:id/photos/upload', vacations.uploadPhoto);
 
   console.log('Routes Loaded');
 };
