@@ -49,13 +49,13 @@ block content
         .form-group
           label(for='url') Photo URL
           input.form-control#url(type='text', placeholder='http://example.com/corn-field.jpg', name='url', autofocus='true')
-        button.btn.btn-default(type='submit') Add Photo
+        button.btn.btn-primary(type='submit') Add Photo
     .col-xs-6
       form.form#form-upload(method='post', action='/vacations/' + vacation._id + '/photos/upload', enctype='multipart/form-data')
         .form-group
           label(for='photos') Upload Photos
           input.form-control#photos(type='file', name='photos', multiple=true)
-        button.btn.btn-default(type='submit') Add Photo(s)
+        button.btn.btn-primary(type='submit') Add Photo(s)
 
 
 block scripts
